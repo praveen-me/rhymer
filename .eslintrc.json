@@ -1,0 +1,20 @@
+{
+    "extends": "airbnb",
+    "env": {
+        "browser": true,
+        "node": true
+    },
+    "parserOptions": {
+        "ecmaVersion": 6,
+        "sourceType": "module",
+        "ecmaFeatures": {
+            "jsx": true
+        }
+    },
+    "rules": {
+        "no-console": "off",
+        "globals": { "fetch": false },
+        "no-nested-ternary": 2,
+        "allowDaisyChain": true
+    }
+}
