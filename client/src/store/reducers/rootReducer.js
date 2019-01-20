@@ -1,14 +1,14 @@
 const initState = {
-  rhymWords: [],
+  rhymingWords: [],
 };
 
 function rootReducer(state = initState, action) {
   switch (action.type) {
     case 'SET_RHYM_WORDS': {
-      const { rhymWords } = action;
+      const { rhymingWords } = action;
       return {
         ...state,
-        rhymWords
+        rhymingWords
       };
     }
 

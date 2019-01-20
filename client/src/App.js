@@ -8,6 +8,7 @@ class App extends Component {
       <div className="App">
         <Header />
         <HomePage />
+        <div className="overlay"></div>
       </div>
     );
   }
