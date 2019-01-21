@@ -1,5 +1,6 @@
 const express = require('express');
-const path = require('path'); 
+const path = require('path');
+const mongoose = require('mongoose');
 const webpackDevMiddleware = require('webpack-dev-middleware');
 const webpack = require('webpack');
 const webpackConfig = require('./webpack.config');
@@ -16,6 +17,14 @@ if (process.env.NODE_ENV === 'development') {
   }));
 }
 
+// mongodb connection
+mongoose.connect('mongodb://localhost/Primathon', { useNewUrlParser: true }, (err) => {
+  if (err) throw err;
+  console.log('connected to mongodb');
+});
+
+// Setting Paths
+app.use('/api', require('./server/routes/api.js'));
 app.use(require('./server/routes/index'));
 
 // setting view
@@ -23,7 +32,7 @@ app.set('view engine', 'pug');
 app.set('views', path.join(__dirname, './server/views'));
 
 // Set image path
-app.use('/images', express.static(path.join(__dirname, './client/src/images')));
+app.use('/images', express.static(path.join(__dirname, './client/src/images')));;
 
 app.listen(8001, () => {
   console.log('server is running on 8001');

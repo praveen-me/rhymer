@@ -15,6 +15,7 @@
         "no-console": "off",
         "globals": { "fetch": false },
         "no-nested-ternary": 2,
-        "allowDaisyChain": true
+        "allowDaisyChain": true,
+        "no-param-reassign": ["error", { "searchedData": true }]
     }
 }

@@ -1,5 +1,6 @@
 const initState = {
   rhymingWords: [],
+  topSearched: []
 };
 
 function rootReducer(state = initState, action) {
@@ -11,7 +12,13 @@ function rootReducer(state = initState, action) {
         rhymingWords
       };
     }
-
+    case 'SET_TOP_SEARCHED': {
+      const { topSearched } = action
+      return {
+        ...state,
+        topSearched
+      }
+    }
     default: return state;
   }
 }

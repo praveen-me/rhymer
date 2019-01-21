@@ -8,11 +8,22 @@ class HomePage extends Component {
     super(props);
     this.state = {
       word: '',
-      isLoading: false, 
-      suggestions: []
+      isLoading: true, 
+      suggestions: [],
+
     }
   }
 
+  componentDidMount() {
+    this.props.dispatch(rhymeAction.getTopSearched((isSucceed) => {
+      if(isSucceed) {
+        this.setState({
+          isLoading: false
+        });
+      }
+    }))
+  }
+  
   handleChange = e => {
     this.setState({
       word: e.target.value
@@ -54,11 +65,12 @@ class HomePage extends Component {
         word: ''
       })
     }));
+    this.props.dispatch(rhymeAction.addSearchedToDB(this.state.word))
   }
   
   render() {
     const { word, isLoading, suggestions } = this.state;
-    const { rhymingWords } = this.props;
+    const { rhymingWords, topSearched } = this.props;
 
     return (
       <main className="wrapper">
@@ -82,6 +94,20 @@ class HomePage extends Component {
           ): ''
         } */}
         {
+          topSearched.length > 0 ? (
+            <div className="searched-wrapper">
+              <div className="container-head">Top Searched</div>
+              <h3 className="searched-words">
+              {
+                topSearched && topSearched.map((word, i) => (
+                  <button key={i}>{word}</button>
+                ))
+              }
+              </h3>
+            </div>
+          ): ''
+        }
+        {
           isLoading ? <Loader /> : (
             rhymingWords.length > 0 ? (
                 <div className="rhym-word-container">
@@ -104,8 +130,9 @@ class HomePage extends Component {
 }
 
 function mapStateToProps(state) {
-  const {rhymingWords} = state;
-  return {rhymingWords};
+  const {rhymingWords, topSearched} = state;
+  console.log(state);
+  return {rhymingWords, topSearched};
 }
 
 export default connect(mapStateToProps)(HomePage);
