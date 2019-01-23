@@ -10,7 +10,6 @@ class HomePage extends Component {
       word: '',
       isLoading: true, 
       suggestions: [],
-
     }
   }
 
@@ -42,30 +41,38 @@ class HomePage extends Component {
           }
         })
           // .then(res => console.log(res))
-          // // .then(data => {
-          // //   console.log(data)
-          // //   this.setState({
-          // //     suggestions: data
-          // //   })
-          // // }) 
+          // .then(data => {
+          //   console.log(data)
+          //   this.setState({
+          //     suggestions: data
+          //   })
+          // }) 
       }
     }); 
   }
 
-  handleSubmit = e => {
-    e.preventDefault();
+  makeSearch = (word) => {
     this.setState({
       isLoading: true
     })
 
-    this.props.dispatch(rhymeAction.getRhymingWords(this.state.word, (isFounded) => {
+    this.props.dispatch(rhymeAction.getRhymingWords(word, (isFounded) => {
       this.setState({
         isLoading: false,
         suggestions: [],
         word: ''
       })
-    }));
+    })); 
+  }
+
+  handleSubmit = e => {
+    e.preventDefault();
+    this.makeSearch(this.state.word);
     this.props.dispatch(rhymeAction.addSearchedToDB(this.state.word))
+  }
+
+  handleSearch = e => {
+    this.makeSearch(e.target.innerText);
   }
   
   render() {
@@ -96,14 +103,14 @@ class HomePage extends Component {
         {
           topSearched.length > 0 ? (
             <div className="searched-wrapper">
-              <div className="container-head">Top Searched</div>
-              <h3 className="searched-words">
+              <div className="container-header center">Top Searched</div>
+              <div className="searched-words">
               {
                 topSearched && topSearched.map((word, i) => (
-                  <button key={i}>{word}</button>
+                  <button key={i} className="search" onClick={this.handleSearch}>{word}</button>
                 ))
               }
-              </h3>
+              </div>
             </div>
           ): ''
         }
@@ -131,7 +138,6 @@ class HomePage extends Component {
 
 function mapStateToProps(state) {
   const {rhymingWords, topSearched} = state;
-  console.log(state);
   return {rhymingWords, topSearched};
 }
 

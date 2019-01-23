@@ -39,11 +39,12 @@ header {
   top: 0;
   font-size: 2rem;
   padding: 0.5rem 0;
-  background: $color1;
+  background: #303735;
   color: #fff;
   font-weight: 300;
   width: 100%;
   position: fixed;
+  z-index: 5;
 }
 
 // Home Page.js
@@ -124,4 +125,22 @@ header {
 .container-header {
   font-size: 1.3rem;
   margin: 1rem 0;
+}
+
+// searched words section
+.searched-wrapper {
+  
+}
+
+.searched-words {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-gap: 0.5rem;
+}
+
+.search {
+  background: #484141;
+  border: none;
+  border-radius: 3px;
+  color: #fff;
 }
