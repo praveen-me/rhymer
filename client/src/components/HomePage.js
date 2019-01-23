@@ -35,18 +35,16 @@ class HomePage extends Component {
       } else {
         fetch(`https://api.datamuse.com/sug?s=${this.state.word}`, {
           method: 'GET',
-          mode: 'no-cors',
           headers: {
             'Content-Type' : 'application/json'
           }
         })
-          // .then(res => console.log(res))
-          // .then(data => {
-          //   console.log(data)
-          //   this.setState({
-          //     suggestions: data
-          //   })
-          // }) 
+          .then(res => res.json())
+          .then(data => {
+            this.setState({
+              suggestions: data
+            })
+          }) 
       }
     }); 
   }
@@ -89,17 +87,20 @@ class HomePage extends Component {
           value={word}/>
           <button type="submit" className="btn">Get Details</button>
         </form>
-        {/* {
-          suggestions.length > 0 ? (
-            <div className="suggestion-container">
+        {
+          suggestions.length > 0 && (
+            <div className="bank-query">
               {
-                suggestions.map(suggestion => (
-                  <p className="suggestion">{suggestion.word}</p>
+                suggestions && suggestions.map((suggestion, i) => (
+                  <button
+                  key={i}  
+                  onClick={this.handleSearch} 
+                  className="drop-list btn">{suggestion.word}</button>
                 ))
               }
             </div>
-          ): ''
-        } */}
+          )
+        }
         {
           topSearched.length > 0 ? (
             <div className="searched-wrapper">

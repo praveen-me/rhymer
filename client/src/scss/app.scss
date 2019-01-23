@@ -143,4 +143,26 @@ header {
   border: none;
   border-radius: 3px;
   color: #fff;
+  padding: 0.3rem;
+}
+
+// Drop list
+
+.bank-query {
+  overflow-y: scroll;
+  height: 100px;
+  background: #e7e7e2;
+  position: absolute;
+  width: 77%;
+  box-shadow : 2px 3px 12px 0px rgba(0, 0, 0, 0.56)
+}
+
+.drop-list {
+  display: block;
+  padding: 0.5rem 0;
+  width: 100%;
+  font-size: 0.8rem;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid #ccc;
 }
