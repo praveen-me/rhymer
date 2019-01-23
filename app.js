@@ -34,6 +34,9 @@ app.set('views', path.join(__dirname, './server/views'));
 // Set image path
 app.use('/images', express.static(path.join(__dirname, './client/src/images')));;
 
-app.listen(8001, () => {
+
+const PORT = process.env.PORT || 8001
+
+app.listen(PORT, () => {
   console.log('server is running on 8001');
 });
