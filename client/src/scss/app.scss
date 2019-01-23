@@ -182,3 +182,9 @@ header {
   border-radius: 0px;
   -webkit-box-shadow: inset 0 0 20px black;
 }
+
+@media screen and (max-width: 420px) {
+  main.wrapper {
+    padding: 75px 1rem;
+  }
+}

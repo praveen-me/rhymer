@@ -71,6 +71,7 @@ class HomePage extends Component {
 
   handleSearch = e => {
     this.makeSearch(e.target.innerText);
+    this.props.dispatch(rhymeAction.addSearchedToDB(e.target.innerText))
   }
   
   render() {
