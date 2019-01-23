@@ -18,7 +18,7 @@ if (process.env.NODE_ENV === 'development') {
 }
 
 // mongodb connection
-mongoose.connect('mongodb://localhost/Primathon', { useNewUrlParser: true }, (err) => {
+mongoose.connect('mongodb://praveen-me:PRAVEEN1234@ds257564.mlab.com:57564/primathon-rhym', { useNewUrlParser: true }, (err) => {
   if (err) throw err;
   console.log('connected to mongodb');
 });
