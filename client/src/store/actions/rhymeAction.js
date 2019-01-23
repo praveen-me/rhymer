@@ -1,6 +1,13 @@
+const URI = 'https://api.datamuse.com/words'
+
 const rhymeAction = {
   getRhymingWords: (word, cb) => (dispatch) => {
-    return fetch(`https://api.datamuse.com/words?rel_rhy=${word}`)
+    return fetch(`${URI}?rel_rhy=${word}`, {
+      method: 'GET',
+      headers: {
+        'Access-Control-Request-Method': 'GET'
+      }
+    })
       .then(res => res.json())
       .then((data) => {
         dispatch({
@@ -8,7 +15,8 @@ const rhymeAction = {
           rhymingWords: data.length > 0 ? data.length > 10 ? data.slice(0, 10) :[...data] : [],
         });
         return cb(true);
-      });
+      })
+      .catch(() => console.log("Can’t access " + URI + " response. Blocked by browser?"))
   },
   addSearchedToDB: (word) => {
     console.log(word)
