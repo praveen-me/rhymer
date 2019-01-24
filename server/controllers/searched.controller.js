@@ -8,12 +8,18 @@ module.exports = {
       if (searchedData) {
         searchedData.searchedCount += 1;
         searchedData.save(); 
+        return res.json({
+          msg: "Updated"
+        })
       } else {
         const newSearched = new Searched({
           word,
           searchedCount: 1
         });
         newSearched.save();
+        return res.json({
+          msg: "Saved"
+        })
       }
     });
   },

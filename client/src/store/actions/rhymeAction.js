@@ -19,7 +19,6 @@ const rhymeAction = {
       .catch(() => console.log("Can’t access " + URI + " response. Blocked by browser?"))
   },
   addSearchedToDB: (word) => {
-    console.log(word)
     return (dispatch) => {
       fetch(`/api/top-searched?word=${word}`, {
         method: 'POST',
